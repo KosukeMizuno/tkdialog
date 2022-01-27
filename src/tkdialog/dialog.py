@@ -76,13 +76,19 @@ def dump_pickle_with_dialog(obj, mode='wb', **opt):
     """Pickle an object with a filename assigned by tkinter's saveas dialog.
 
     kwargs will be passed to saveas_dialog.
+
+    Returns
+    --------
+    filename: str
     """
     opt_default = dict(filetypes=[('pickled data', '*.pkl'), ('all', '*')])
     _opt = dict(opt_default, **opt)
     fn = saveas_dialog(**_opt)
     if fn == '':  # canceled
-        return
+        return ''
     # note: 上書き確認はtkinterがやってくれるのでここではチェックしない
 
     with Path(fn).open(mode) as f:
         pickle.dump(obj, f)
+
+    return fn
