@@ -2,6 +2,8 @@
 
 A wrapper library to use tkinter dialogs easily.
 
+[![PyPI version](https://badge.fury.io/py/tkdialog-wrapper.svg)](https://badge.fury.io/py/tkdialog-wrapper) [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+
 ## Usage
 
 ```python
@@ -21,7 +23,4 @@ dat = {'x': 100, 'y': '01234'}
 tkdialog.dump_pickle_with_dialog(dat)
 ```
 
-## LICENSE
-
-MIT, see [LICENSE](LICENSE)
 
