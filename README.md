@@ -1,10 +1,12 @@
-# tkdialog
+# tkdialog-wrapper
 
 A wrapper library to use tkinter dialogs easily.
 
 [![PyPI version](https://badge.fury.io/py/tkdialog-wrapper.svg)](https://badge.fury.io/py/tkdialog-wrapper) [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
 ## Usage
+
+`pip install tkdialog-wrapper`
 
 ```python
 import tkdialog
