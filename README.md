@@ -17,16 +17,26 @@ filename = tkdialog.open_dialog()
 # make saveas dialog
 filename = tkdialog.open_dialog()
 
-# open a pickled file with file selector
+# open a pickled file with a dialog
 obj = tkdialog.load_pickle_with_dialog()
 
-# pickle an object with save dialog
+# pickle an object with a dialog
 dat = {'x': 100, 'y': '01234'}
 tkdialog.dump_pickle_with_dialog(dat)
 
 # with numpy
-dat = np.load(tkdialog.open_dialog())
+dat = np.load(tkdialog.open_dialog('.npz'))
 
 # with pandas
-df = pd.read_csv(tkdialog.open_dialog())
+df = pd.read_csv(tkdialog.open_dialog('.csv'))
 ```
+
+## Change log
+### [2.0.0]
+- breaking changes:
+  - supported python version >= 3.5
+  - argument of all functions
+  - add docstring
+  - add typehint
+
+### [1.x]

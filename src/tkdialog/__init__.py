@@ -1,4 +1,4 @@
-__version__ = '1.0.3'
+__version__ = '2.0.0'
 
 from .dialog import (
     open_dialog,
@@ -6,4 +6,3 @@ from .dialog import (
     load_pickle_with_dialog,
     dump_pickle_with_dialog
 )
-
