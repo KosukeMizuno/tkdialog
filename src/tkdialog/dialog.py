@@ -1,4 +1,5 @@
 from pathlib import Path
+from os import PathLike
 import pickle
 
 import tkinter as tk
@@ -7,7 +8,7 @@ from typing import Any, Callable, Optional, Union, Dict
 
 
 def open_dialog(ext: Optional[str] = None,
-                initialdir: Union[str, Path] = '.',
+                initialdir: Union[str, PathLike] = '.',
                 **kwargs) -> str:
     """Make a file open dialog
 
@@ -51,7 +52,7 @@ def open_dialog(ext: Optional[str] = None,
 
 
 def saveas_dialog(ext: Optional[str] = None,
-                  initialdir: Union[str, Path] = '.',
+                  initialdir: Union[str, PathLike] = '.',
                   **kwargs) -> str:
     """Make a file save dialog
 
@@ -95,7 +96,7 @@ def saveas_dialog(ext: Optional[str] = None,
 
 
 def load_pickle_with_dialog(ext: str = '.pkl',
-                            initialdir: Union[str, Path] = '.',
+                            initialdir: Union[str, PathLike] = '.',
                             **kwargs) -> Any:
     """Load a pickled file selected by a file open dialog.
 
@@ -125,7 +126,7 @@ def load_pickle_with_dialog(ext: str = '.pkl',
 
 def dump_pickle_with_dialog(obj: Any,
                             ext: str = '.pkl',
-                            initialdir: Union[str, Path] = '.',
+                            initialdir: Union[str, PathLike] = '.',
                             dump_func: Callable = pickle.dump,
                             **kwargs) -> Union[None, Path]:
     """Pickle an object as a file selected by a file save dialog.
