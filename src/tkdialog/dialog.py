@@ -1,5 +1,5 @@
 from pathlib import Path
-from os import PathLike
+from os import PathLike, chdir
 import pickle
 
 import tkinter as tk
@@ -95,6 +95,39 @@ def saveas_dialog(ext: Optional[str] = None,
     return tkfiledialog.asksaveasfilename(**_opt)
 
 
+def open_dir_dialog(initialdir: Union[str, PathLike] = '.',
+                    **kwargs) -> str:
+    """Make a directroy selector dialog
+
+    Parameters
+    ----------
+    initialdir : str or pathlib.Path, default='.'
+        An initial directory of the dialog
+
+    kwargs will be passed to `tkinter.filedialog.askopenfilename`.
+    See also [tkinter document](https://tkdocs.com/shipman/tkFileDialog.html).
+
+    Returns
+    --------
+    str
+        the selected filename
+        If the dialog is canceled, an empty string is returned.
+    """
+    opt_default: Dict[str, Any] = {}
+
+    if initialdir is None:
+        initialdir = Path.cwd()
+    opt_default['initialdir'] = Path(initialdir)
+
+    _opt = dict(opt_default, **kwargs)
+
+    root = tk.Tk()
+    root.withdraw()
+    root.wm_attributes("-topmost", True)
+
+    return tkfiledialog.askdirectory(**_opt)
+
+
 def load_pickle_with_dialog(ext: str = '.pkl',
                             initialdir: Union[str, PathLike] = '.',
                             **kwargs) -> Any:
@@ -160,5 +193,32 @@ def dump_pickle_with_dialog(obj: Any,
     p = Path(fn)
     with p.open('wb') as f:
         dump_func(obj, f)
+
+    return p
+
+
+def chdir_with_dialog(initialdir: Union[str, PathLike] = '.',
+                      **kwargs) -> Union[None, Path]:
+    """Select a directory to change the working directory.
+
+    Parameters
+    ----------
+    initialdir : str or pathlib.Path, default='.'
+        An initial directory of the dialog
+    kwargs : optional
+        See `open_dir_dialog`.
+
+    Returns
+    --------
+    pathlib.Path or None
+        a Path object corresponding to the new working directory, pathlib.Path
+        If the dialog is canceled, `None` is returned.
+    """
+    dn = open_dir_dialog(initialdir, **kwargs)
+    if dn == '':  # canceled
+        return None
+
+    p = Path(dn)
+    chdir(p)
 
     return p

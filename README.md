@@ -24,6 +24,13 @@ df = pd.read_csv(tkdialog.open_dialog('.csv'))
 filename = tkdialog.open_dialog(ext='pkl')
 
 
+# open a directory selector
+dirname = tkdialog.open_dir_dialog()
+
+# change current working directory with a selector dialog
+tkdialog.chdir_with_dialog()
+
+
 # open a pickled file (*.pkl) with a dialog
 obj = tkdialog.load_pickle_with_dialog()
 
@@ -36,6 +43,10 @@ tkdialog.dump_pickle_with_dialog(dat)
 ```
 
 ## Change log
+### [2.1.0]
+- add functions:
+  - `chdir_with_dialog`, `open_dir_dialog`
+
 ### [2.0.0]
 - breaking changes:
   - supported python version >= 3.5
